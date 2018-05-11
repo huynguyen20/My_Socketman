@@ -193,7 +193,7 @@ void recover_network() {
 }
 
 void restart_network() {
-#ifdef __OPENWRT__
+#if defined(__OPENWRT__) || defined (__LEDE__)
     system("/etc/init.d/network restart");
     sleep(1);
     system("/etc/init.d/firewall restart");

@@ -556,7 +556,7 @@ void collect_data(int offline_reason)
     json_object_object_add(jobj, "stations", jstations_array);
   }
 
-#ifdef __OPENWRT__
+#if defined(__OPENWRT__) || defined (__LEDE__)
   char firmware[20];
   readlineToBuffer("/etc/openwrt_version", firmware);
 

@@ -193,6 +193,8 @@ int post_cache()
   char url[255];
 
   append_url_token(options.stats_url, url);
+  debug("Apeended token %s",url);
+
 
   curl = curl_easy_init();
   if (!curl)

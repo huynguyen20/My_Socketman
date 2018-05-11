@@ -27,10 +27,10 @@ void machine_type(char *type, size_t len)
     char *match;
     char buffer[1024];
     char fmt[64];
-#ifdef __OPENWRT__
+#if defined(__OPENWRT__) || defined (__LEDE__)
     fp = fopen ("/tmp/sysinfo/model", "r");
 #elif __linux
-    fp = fopen ("/etc/os-release", "r");
+    fp = fopen ("/tmp/sysinfo/model", "r");
 #endif
     if (fp) {
       bytes_read = fread (buffer, 1, sizeof (buffer), fp);
@@ -41,10 +41,10 @@ void machine_type(char *type, size_t len)
       return;
 
     buffer[bytes_read] = '\0';
-#ifdef __OPENWRT__
+#if defined(__OPENWRT__) || defined (__LEDE__)
     strncpy(type, buffer, strlen(buffer)+1);
 #elif __linux
-    match = strstr(buffer, "NAME");
+    strncpy(type, buffer, strlen(buffer)+1);
 
     if (match == NULL)
       return;

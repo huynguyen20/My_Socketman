@@ -31,7 +31,7 @@ int init()
 
   machine_type(machine, sizeof(machine));
 
-#ifdef __OPENWRT__
+#if defined(__OPENWRT__) || defined (__LEDE__)
   readlineToBuffer("/etc/openwrt_version", firmware);
 #endif
 
