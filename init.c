@@ -31,9 +31,10 @@ int init()
 
   machine_type(machine, sizeof(machine));
 
-#if defined(__OPENWRT__) || defined (__LEDE__) || defined (__linux)
+readlineToBuffer("/etc/openwrt_version", firmware);
+/* #if defined(__OPENWRT__) || defined (__LEDE__) || defined (__linux)
   readlineToBuffer("/etc/openwrt_version", firmware);
-#endif
+#endif */
 
   if (firmware[0] == '\0') {
     strcpy(firmware, "DNE");

@@ -27,11 +27,12 @@ void machine_type(char *type, size_t len)
     char *match;
     char buffer[1024];
     char fmt[64];
-#if defined(__OPENWRT__) || defined (__LEDE__)
+/*   #if defined(__OPENWRT__) || defined (__LEDE__)
+      fp = fopen ("/tmp/sysinfo/model", "r");
+  #elif defined __linux
+      fp = fopen ("/tmp/sysinfo/model", "r");
+  #endif */
     fp = fopen ("/tmp/sysinfo/model", "r");
-#elif defined __linux
-    fp = fopen ("/tmp/sysinfo/model", "r");
-#endif
     if (fp) {
       bytes_read = fread (buffer, 1, sizeof (buffer), fp);
       fclose (fp);
@@ -41,7 +42,7 @@ void machine_type(char *type, size_t len)
       return;
 
     buffer[bytes_read] = '\0';
-#if defined(__OPENWRT__) || defined (__LEDE__)
+/* #if defined(__OPENWRT__) || defined (__LEDE__)
     strncpy(type, buffer, strlen(buffer)+1);
 #elif defined __linux
     strncpy(type, buffer, strlen(buffer)+1);
@@ -50,7 +51,8 @@ void machine_type(char *type, size_t len)
       return;
     snprintf(fmt, sizeof(fmt), "NAME=\"%%%zu[^\t\n]\"", len - 1);
     sscanf(match, fmt, type);
-#endif
+#endif */
+  strncpy(type, buffer, strlen(buffer)+1);
   }
 }
 
