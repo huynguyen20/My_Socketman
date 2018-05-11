@@ -29,7 +29,7 @@ void machine_type(char *type, size_t len)
     char fmt[64];
 #if defined(__OPENWRT__) || defined (__LEDE__)
     fp = fopen ("/tmp/sysinfo/model", "r");
-#elif __linux
+#elif defined __linux
     fp = fopen ("/tmp/sysinfo/model", "r");
 #endif
     if (fp) {
@@ -43,7 +43,7 @@ void machine_type(char *type, size_t len)
     buffer[bytes_read] = '\0';
 #if defined(__OPENWRT__) || defined (__LEDE__)
     strncpy(type, buffer, strlen(buffer)+1);
-#elif __linux
+#elif defined __linux
     strncpy(type, buffer, strlen(buffer)+1);
 
     if (match == NULL)
