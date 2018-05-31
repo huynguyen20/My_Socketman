@@ -164,7 +164,7 @@ void parse_config(char *buffer)
 
   // Not in the options yet
   if (strcmp(options.archive, "") == 0)
-    strcpy(options.archive, "/tmp/archive.gz");
+    strcpy(options.archive, "/etc/archive.gz");
 
   if (!options.health_port)
     options.health_port = 53;

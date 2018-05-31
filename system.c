@@ -52,7 +52,6 @@ void machine_type(char *type, size_t len)
     snprintf(fmt, sizeof(fmt), "NAME=\"%%%zu[^\t\n]\"", len - 1);
     sscanf(match, fmt, type);
 #endif */
-  strncpy(type, buffer, strlen(buffer)+1);
   }
 }
 
