@@ -86,7 +86,7 @@ void send_cached()
 
   // delete the archive every run but leave the cache
   // in place just in case it fails
-  del = unlink(options.cache);
+  int del = unlink(options.cache);
   if(del != 0) {
     printf("File can not be deleted!");
   }
