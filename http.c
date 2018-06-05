@@ -186,7 +186,8 @@ int post_cache()
     return 1;
   }
 
-
+  struct curl_httppost *post=NULL;
+  struct curl_httppost *last=NULL;
   CURL *curl;
   char url[255];
 
@@ -213,14 +214,10 @@ int post_cache()
   curl_easy_setopt(curl, CURLOPT_CAINFO, "/etc/bundle.pem");
   curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-  curl_mime *mime;
-  curl_mimepart *part;
-  mime = curl_mime_init(curl);
-  part = curl_mime_addpart(mime); 
-  curl_mime_filedata(part,options.archive);
-  curl_mime_name(part,"data");
-  curl_easy_setopt(curl, CURLOPT_URL, url);
-  curl_easy_setopt(curl,CURLOPT_MIMEPOST,mime);
+  curl_easy_setopt(curl,CURLOPT_URL,options.api_url);
+
+  curl_formadd(&post, &last, CURLFORM_COPYNAME, "data", CURLFORM_FILE, options.archive, CURLFORM_END);
+  curl_easy_setopt(curl, CURLOPT_HTTPPOST, post);
 
 
   long resp = do_curl(curl, url);
@@ -257,7 +254,7 @@ cleanup:
   if (c.memory) {
     free(c.memory);
   }
-  //curl_formfree(post);
+  // curl_formfree(post);
   curl_easy_cleanup(curl);
   curl_slist_free_all(headers);
   return resp;
