@@ -82,6 +82,7 @@ long do_curl(CURL *curl, char *url)
   if (options.debug) {
     /* curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L); */
   }
+  debug("URL=%s",url);
   curl_easy_setopt(curl, CURLOPT_URL, url);
   curl_easy_perform(curl);
   curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &http_code);
@@ -192,7 +193,7 @@ int post_cache()
   char url[255];
 
   append_url_token(options.stats_url, url);
-  debug("Apeended token %s",url);
+  debug("Appended token %s\r\n archive=%s",url,options.archive);
 
 
   curl = curl_easy_init();
@@ -214,7 +215,6 @@ int post_cache()
   curl_easy_setopt(curl, CURLOPT_CAINFO, "/etc/bundle.pem");
   curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, FALSE);
 
-  curl_easy_setopt(curl,CURLOPT_URL,options.api_url);
 
   curl_formadd(&post, &last, CURLFORM_COPYNAME, "data", CURLFORM_FILE, options.archive, CURLFORM_END);
   curl_easy_setopt(curl, CURLOPT_HTTPPOST, post);
