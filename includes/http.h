@@ -1,7 +1,6 @@
 #ifndef __HTTP_H
 #define __HTTP_H
 
-#define CURLOPT_MIMEPOST 10269
 #include <json-c/json.h>
 #include <curl/curl.h>
 #include <compiler.h>
