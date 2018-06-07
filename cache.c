@@ -74,10 +74,10 @@ void send_cached()
   int run = post_cache(options.archive);
 
   // Remove the archive whatever the result
- /*  int del = unlink(options.archive);
+  int del = unlink(options.archive);
   if (del != 0) {
     printf("Archive could not be deleted!");
-  } */
+  }
 
   // run == the returned value from the api
   if (run == 0) {
