@@ -118,8 +118,8 @@ void parse_config(char *buffer)
             strcpy(options.mac_file, json_object_get_string(val));
           if (strcmp(key, "token") == 0)
             strcpy(options.token, json_object_get_string(val));
-          if (strcmp(key, "splash") == 0)
-            options.splash=json_object_get_int(val);
+/*           if (strcmp(key, "splash") == 0)
+            options.splash = json_object_get_int(val); */
       }
     }
     json_object_put(json_config);

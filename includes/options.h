@@ -43,6 +43,6 @@ struct _options {
   int initialized;
   char token[128];
   char machine[100];
-  int splash;
+/*   int splash; */
 } options;
 #endif

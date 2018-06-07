@@ -640,11 +640,11 @@ void collect_data(int offline_reason)
   format_dhcp(jdhcp_array);
   json_object_object_add(jobj, "dhcp", jdhcp_array);
 
-  if (options.splash){
+/*   if (options.splash){
     json_object *jsplash_array = json_object_new_array();
     format_splash(jsplash_array);
     json_object_object_add(jobj, "splash", jsplash_array);
-  }
+  } */
   // TODO: Outputs write: broken pipe if no splash - should suppress //
   /* json_object *jsplash_array = json_object_new_array(); */
   /* format_splash(jsplash_array); */
