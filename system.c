@@ -42,7 +42,7 @@ void machine_type(char *type, size_t len)
       return;
 
     buffer[bytes_read] = '\0';
-    strncpy(type, buffer, strlen(buffer)+1);
+  /*   strncpy(type, buffer, strlen(buffer)+1); */
 /* #if defined(__OPENWRT__) || defined (__LEDE__)
     strncpy(type, buffer, strlen(buffer)+1);
 #elif defined __linux
